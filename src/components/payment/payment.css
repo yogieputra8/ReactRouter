@@ -1,0 +1,45 @@
+
+.payment{
+	width:38rem;
+	height: 20rem;
+	margin-left: 60px;
+
+	
+}
+
+h4{
+	margin-bottom: 50px;
+}
+
+label.deskripsi{
+	display: block;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+input.nomorkartu{
+	width: 100%;
+}
+
+
+select#ddlCars{
+	max-height:50px; 
+    overflow-y :auto; 
+    overflow-x:hidden; 
+    width: 100px;
+    margin-left: 10px;
+    display: contents;
+}
+
+
+.cvv{
+	 margin-left: 10px;
+
+}
+
+
+
+
+
+
+
