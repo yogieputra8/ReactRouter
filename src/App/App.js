@@ -7,9 +7,6 @@ import {
 } from 'react-router-dom';
 
 
-
-
-
 // Components
 import Header from '../components/header/header';
 import Login from '../components/login/login';
@@ -18,6 +15,11 @@ import Product from '../components/product/product';
 import ProductPayment from '../components/product_payment/product_payment';
 import Signup from '../components/sign_up/sign_up';
 import Pdp from '../components/product_detail_page/pdp';
+import Cart from '../components/cart/cart';
+import Ps from '../components/payment_success/ps';
+
+
+
 
 class App extends Component {
   render() {
@@ -29,6 +31,11 @@ class App extends Component {
           <Route exact path='/Login' component={Login}/>
           <Route exact path='/Signup' component={Signup}/>
           <Route exact path='/pdp' component={Pdp}/>
+          <Route exact path='/cart' component={Cart}/>
+          <Route exact path='/payment' component={Payment}/>
+          <Route exact path='/prodPayment' component={ProductPayment}/>
+          <Route exact path='/paymentsuccess' component={Ps}/>
+          
           
       </div>
       </Router>

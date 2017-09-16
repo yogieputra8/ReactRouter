@@ -21,7 +21,7 @@ class Header extends Component{
                         <Link to="/Product"> Home </Link>
                     </li>
                     <li>
-                        <a href="#"> Cart </a>
+                        <Link to="/cart"> Cart </Link>
                     </li>
                     <li>
                     <Link to="/Login"> Login </Link>

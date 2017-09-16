@@ -30,7 +30,9 @@ class Pdp extends Component{
                                         Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
                                         of Lorem Ipsum.
                                     </p>
-                                    <a href="#" className="btn btn-primary">Buy Now! </a>
+                                    <Link to="/payment">
+                                    <button type="submit" className="btn btn-primary" >Buy</button>
+                                    </Link>
                                 </div>
                             </div>
                     </div>
