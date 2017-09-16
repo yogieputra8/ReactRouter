@@ -25,31 +25,36 @@ class Product extends Component{
                     name: 'Mbp',
                     price: 18000
                 }
-            ]
+            ],
+            data_product_api: [],
         }
     }
-    // componentDidMount(){
-    //     console.log('did mount')
-    // }
 
-    // componentWillMount(){
-    //     // console.log('will mount')
-    //     axios.get(base_URL + '/shoppinglists')
-    //         .then(function (response) {
-    //             console.log(response);
-    //             const data_product = response.data
-    //             console.log(data_product)
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
+    componentDidMount(){
+        // console.log('did mount') 
+    }
+
+    componentWillMount(){
+        this.getProducts()
+    }
+
+
+    getProducts = async () => { 
+        try {
+            let response = await axios.get(base_URL + '/shoppinglists')
+            let responseJson = await response;
+            console.log(responseJson) 
+            this.setState({ data_product_api: response.data })
+        } catch(error) {
+            console.error(error);
+        }
+    }
 
     
     // 1. request get api, taruh willmount
     // 2. data response dari api, disimpan ke state
     // 3. state di-map ke -view
-
+ 
 
     render(){
         // console.log(this.state.products)
@@ -57,7 +62,9 @@ class Product extends Component{
         //     console.log(res)
         // })
 
-        const product_thumbnail = this.state.products.map((res, index) => {
+        console.log(this.state.data_product_api)
+        const product_thumbnail = this.state.data_product_api.map((res, index) => {
+            // console.log(res)
             return (
                 <div className="col-sm-3" key={index}>
                     <div className="card product">
@@ -72,7 +79,7 @@ class Product extends Component{
                             </div>
                         </div>
             )
-        })
+        }) 
  
 
 
@@ -80,8 +87,6 @@ class Product extends Component{
             <div className="container">
                 <div className="row">
                     {product_thumbnail}
-                    
-                    
                 </div>
             </div>
         );
