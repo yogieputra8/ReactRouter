@@ -76,7 +76,7 @@ class Payment extends Component{
                             </div>
                             <br/>
 
-                            <Link to="/Product">
+                            <Link to="/">
                                 <button type="submit" className="btn btn-primary float-left" >Cancel</button>
                             </Link>
                             

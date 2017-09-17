@@ -18,7 +18,7 @@ class Ps extends Component{
                              <div className="card-block">
                                 <h1>Payment Success</h1>
                                 <h1>Thank You</h1>
-                                <Link to="/Product">
+                                <Link to="/">
                                 <a href="">Back to homepage</a>
                                 </Link>
                             </div>

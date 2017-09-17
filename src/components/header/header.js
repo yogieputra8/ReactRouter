@@ -18,7 +18,7 @@ class Header extends Component{
             <nav>
                 <ul>
                     <li>
-                        <Link to="/Product"> Home </Link>
+                        <Link to="/"> Home </Link>
                     </li>
                     <li>
                         <Link to="/cart"> Cart </Link>
