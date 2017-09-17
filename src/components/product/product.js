@@ -4,8 +4,8 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios'
+import { BASE_API_URL } from '../lib/util'
 
-const base_URL = 'http://172.104.50.9:3000/api'
 
 class Product extends Component{
     constructor(props){
@@ -22,7 +22,7 @@ class Product extends Component{
 
     getProducts = async () => { 
         try {
-            let response = await axios.get(base_URL + '/shoppinglists')
+            let response = await axios.get(BASE_API_URL + '/shoppinglists')
             let responseJson = await response;
             console.log(responseJson) 
             this.setState({ data_product_api: response.data })
