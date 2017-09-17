@@ -3,42 +3,69 @@ import './pdp.css';
 import {
   Link
 } from 'react-router-dom';
+import axios from 'axios'
+
+const base_URL = 'http://172.104.50.9:3000/api'
+
+
+
+const Product_detail = (props) => {
+    console.log(props.data)
+    return (
+        <div className="row">
+            <div className="col-sm-5">
+                <img src={props.data.image} alt="Product" className="img-thumbnail"></img>
+            </div>
+            <div className="col-sm-7">
+                <div className="card pdp">
+                    <div className="card-block">
+                        <h4 className="card-title">{props.data.product_name}</h4>
+                        <p className="card-text">Price: Rp {props.data.price}</p>
+                        <p>{props.data.description}</p>
+                        <a href="#" className="btn btn-primary">Buy Now !</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 
 class Pdp extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            product_detail_api:  {}
+        }  
+    }
+
+    componentDidMount(){
+        this.getProducts()
+    }
+
+    getProducts = async () => { 
+        try {
+            let response = await axios.get(base_URL + '/productdetails?filter[where][product_id]=743892')
+            let responseJson = await response;
+            console.log(responseJson.data) 
+            console.log(responseJson.data[0]) 
+            this.setState({ product_detail_api: response.data[0] })
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
     render(){
-        return(
-         <div className="container">
-                <div className="row">
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-3">
-
-                        <img src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/m/bp/mbp15touch/gray/mbp15touch-gray-select-201610?wid=452&hei=420&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1496611018929" alt="Product" className="img-thumbnail"></img>
-
-                        
-                    </div>
-                    <div className="col-sm-5">
-                            <div className="card pdp">
-                                <div className="card-block">
-                                    <h4 className="card-title">Macbook Pro</h4>
-                                    <p className="card-text">Price: Rp 12.000.000</p>
-                                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
-                                        essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
-                                        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-                                        of Lorem Ipsum.
-                                    </p>
-                                    <a href="#" className="btn btn-primary">Buy Now! </a>
-                                </div>
-                            </div>
-                    </div>
-                    <div className="col-sm-2"></div>
-
+        if (this.state.product_detail_api) {
+            return (
+                <div className="container">
+                    <Product_detail data={this.state.product_detail_api} />
                 </div>
-            </div>
-        );
+            )
+        }
+        
+        return <div>Loading...</div>;
     }
 }
 
