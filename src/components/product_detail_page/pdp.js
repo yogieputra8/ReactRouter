@@ -8,8 +8,44 @@ import axios from 'axios'
 const base_URL = 'http://172.104.50.9:3000/api'
 
 
+class Pdp extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            product_detail_api:  {}
+        }  
+    }
+
+    componentDidMount(){
+        this.getProducts()
+    }
+
+    getProducts = async () => { 
+        try {
+            let response = await axios.get(base_URL + '/productdetails?filter[where][product_id]=743892')
+            let responseJson = await response;
+            this.setState({ product_detail_api: response.data[0] })
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
+    render(){
+        if (this.state.product_detail_api) {
+            return (
+                <div className="container">
+                    <Product_detail data={this.state.product_detail_api} />
+                </div>
+            )
+        }
+        
+        return <div>Loading...</div>;
+    }
+}
 
 const Product_detail = (props) => {
+    console.log(props)
     console.log(props.data)
     return (
         <div className="row">
@@ -30,44 +66,6 @@ const Product_detail = (props) => {
     )
 }
 
-
-class Pdp extends Component{
-    constructor(props){
-        super(props)
-
-        this.state = {
-            product_detail_api:  {}
-        }  
-    }
-
-    componentDidMount(){
-        this.getProducts()
-    }
-
-    getProducts = async () => { 
-        try {
-            let response = await axios.get(base_URL + '/productdetails?filter[where][product_id]=743892')
-            let responseJson = await response;
-            console.log(responseJson.data) 
-            console.log(responseJson.data[0]) 
-            this.setState({ product_detail_api: response.data[0] })
-        } catch(error) {
-            console.error(error);
-        }
-    }
-
-    render(){
-        if (this.state.product_detail_api) {
-            return (
-                <div className="container">
-                    <Product_detail data={this.state.product_detail_api} />
-                </div>
-            )
-        }
-        
-        return <div>Loading...</div>;
-    }
-}
 
 
 export default Pdp;
