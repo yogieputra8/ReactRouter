@@ -4,9 +4,10 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios';
+import {BASE_API_URL} from '../lib/util';
 
 
-const base_URL = 'http://172.104.50.9:3000/api'
+
 
 
 class Pdp extends Component{
@@ -24,7 +25,7 @@ class Pdp extends Component{
 
     getProduct =async () =>{
         try{
-            let response = await axios.get(base_URL +'/productdetails?filter[where][product_id]=253462')
+            let response = await axios.get(BASE_API_URL +'/productdetails?filter[where][product_id]=253462')
             let responseJson = await response;
             console.log(responseJson.data)
             console.log(responseJson.data[0])
