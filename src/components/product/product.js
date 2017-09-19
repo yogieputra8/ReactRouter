@@ -8,9 +8,6 @@ import {BASE_API_URL} from '../lib/util';
 
 
 
-  		  
-
-
 class Product extends Component{
     constructor (props){
         super (props)
@@ -84,15 +81,6 @@ const Product_thumbnail =(props)=>{
 }
 
 
-
-
-
-
-
-
-
-    
-        
 
 
 
