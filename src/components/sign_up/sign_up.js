@@ -27,7 +27,7 @@ class Signup extends Component{
         if (this.state.password === this.state.confirm_pass){
             this.setState({
                 error: false
-            })
+            })      
 
             const params ={
                 "email": this.state.email,

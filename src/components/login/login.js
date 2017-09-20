@@ -21,15 +21,14 @@ class Login extends Component{
         e.preventDefault();
 
         
-        if(this.state.email || this.state.password === null){
-            this.setState({
-                error: false
-            })
+        if(this.state.email === '' || this.state.password ==='' ){
+            this.setState ({message:'password dan login harus diisi !'})
 
+            
+        }  else if(this.state.email != ''&& this.state.password !=''){
             const params ={
                 "email": this.state.email,
                 "password":this.state.password
-
                 
             }
             
@@ -38,17 +37,14 @@ class Login extends Component{
                     console.log(res)
                     if(res.status === 200 ){
                         this.setState({message:'Login success!!'})
-                    }
+                    }else if(res.status === 401)
+                    this.setState({ message:'email dan password anda salah'})
                 })
                 .catch(err=>{
                     console.log(err)
-                    this.setState({message:'Anda belum memiliki akun, silahkan sign Up!'})
+                    this.setState({ message:'email dan password anda salah'})
                 })
-        }   else{
-            this.setState({
-                error:true
-            })
-        }
+        } 
     }
 
     render(){
@@ -57,8 +53,7 @@ class Login extends Component{
                     <div className="card-block">
                         <form onSubmit={this.onLogin}>
                           <h4> Silahkan masuk ke dalam akun anda </h4>
-                          <h6> {this.state.error && 'email dan password harus di isi'}</h6>
-                          <h6> {this.state.message !='' && this.state.message}</h6>
+                          <h6> {this.state.message}</h6>
                             <input 
                                 type="email" 
                                 className="email" 
@@ -77,9 +72,6 @@ class Login extends Component{
                         </form>
                     </div>
                 </div>
-
-        
-
 
          
         );
