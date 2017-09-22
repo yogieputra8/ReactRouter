@@ -22,6 +22,28 @@ import Ps from '../components/payment_success/ps';
 
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    
+
+  }
+
+  componentDidMount(){
+    this.getToken()     
+ }
+
+ getToken= ()=>{
+  const token =localStorage.getItem('item')
+  console.log(token)
+ }
+ 
+ render(){
+
+ }
+
+
+
+
   render() {
     return (
       <Router>
