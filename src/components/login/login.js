@@ -37,14 +37,14 @@ class Login extends Component{
                     console.log(res)
                     if(res.status === 200 ){
                         this.setState({message:'Login success!!'})
-                        localStorage.setItem('item',res.data.id)
+                        localStorage.setItem('token', res.data.id)
                         
                     }else if(res.status === 401)
-                    this.setState({ message:'email dan password anda salah'})
+                    this.setState({ message: 'email dan password anda salah' })
                 })
                 .catch(err=>{
                     console.log(err)
-                    this.setState({ message:'email dan password anda salah'})
+                    this.setState({ message: 'email dan password anda salah' })
                 })
         } 
     }

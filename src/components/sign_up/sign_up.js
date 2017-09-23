@@ -33,11 +33,11 @@ class Signup extends Component{
                 "email": this.state.email,
                 "password": this.state.password
             }
-            axios.post(BASE_API_URL+'/Users',params)
+            axios.post(BASE_API_URL + '/Users', params)
                 .then(res=>{
                     console.log(res)
                     if(res.status === 200){
-                        this.setState({message:'Signup success! You can now login'})
+                        this.setState({ message: 'Signup success! You can now login' })
                     }
                 })
                 .catch(err=>{
@@ -63,19 +63,19 @@ class Signup extends Component{
                             type="email"
                             className="email"
                             placeholder="E-mail"
-                            onChange={(event)=> this.setState({email: event.target.value})} />
+                            onChange={(event)=> this.setState({ email: event.target.value })} />
                         <br/>
                         <input 
                             type="password"
                             className="password"
                             placeholder="Password"
-                            onChange={(event)=> this.setState({password:event.target.value})}  />
+                            onChange={(event)=> this.setState({ password:event.target.value })}  />
                         <br/>
                         <input 
                             type="password"
                             className="password"
                             placeholder="Confirm Password"
-                            onChange ={(event)=>this.setState({confirm_pass: event.target.value})}  />
+                            onChange ={(event)=>this.setState({ confirm_pass: event.target.value })}  />
                         <br/>
                         <button type="submit" className="btn btn-primary">Sign Up!</button>
                         <br/>

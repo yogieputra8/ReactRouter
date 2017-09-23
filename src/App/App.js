@@ -22,44 +22,19 @@ import Ps from '../components/payment_success/ps';
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    
-
-  }
-
-  componentDidMount(){
-    this.getToken()     
- }
-
- getToken= ()=>{
-  const token =localStorage.getItem('item')
-  console.log(token)
- }
- 
- render(){
-
- }
-
-
-
-
   render() {
     return (
       <Router>
-      <div className="App">
-         <Header className="App-main"/>
-          <Route exact path='/' component={Product}/>
-          <Route exact path='/Login' component={Login}/>
-          <Route exact path='/Signup' component={Signup}/>
-          <Route exact path='/pdp' component={Pdp}/>
-          <Route exact path='/cart' component={Cart}/>
-          <Route exact path='/payment' component={Payment}/>
-          <Route exact path='/prodPayment' component={ProductPayment}/>
-          <Route exact path='/paymentsuccess' component={Ps}/>
-          
-          
-      </div>
+        <div className="App">
+          <Header className="App-main" />
+          <Route exact path='/' component={Product} />
+          <Route exact path='/Login' component={Login} />
+          <Route exact path='/Signup' component={Signup} />
+          <Route exact path='/pdp' component={Pdp} />
+          <Route exact path='/cart' component={Cart} />
+          <Route exact path='/payment' component={Payment} />
+          <Route exact path='/paymentsuccess' component={Ps} />
+        </div>
       </Router>
     );
   }

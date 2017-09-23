@@ -3,40 +3,74 @@ import './header.css';
 import {
   Link
 } from 'react-router-dom';
-
+import axios from 'axios'
+import { BASE_API_URL } from '../lib/util'
 
 
 class Header extends Component{
+    state = {
+        tokenState: null
+    }
+
+    componentDidMount(){
+        this.getToken()
+    }
+
+    getToken = async () => {
+        const tokenVariable = await localStorage.getItem('token')
+        console.log(tokenVariable)
+        this.setState({
+            tokenState: tokenVariable
+        })
+    }
+
+
+    logoutHandler = () => {
+        console.log('logout')
+        // axios.post(BASE_API_URL + '/Users/logout?access_token=' + this.state.tokenState)
+        //     .then(result => {
+        //         console.log(result)
+        //         localStorage.clear()
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
+
+    }
+
+
     render(){
         return(
-              
-        <header>
-            <div className="logo">
-            LOGO
-            </div> 
-
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/"> Home </Link>
-                    </li>
-                    <li>
-                        <Link to="/cart"> Cart </Link>
-                    </li>
-                    <li>
-                    <Link to="/Login"> Login </Link>
-                    </li>
-                    <li>
-                        <Link to="/Signup"> SignUp </Link>
-                    </li>
-                </ul>
-            </nav>
-            
-
-        </header>
-
-
-         
+            <header>
+                <div className="logo">Shop Online</div> 
+                
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/"> Home </Link>
+                        </li>
+                        {this.state.tokenState && 
+                        <li>
+                            <Link to="/cart"> Cart </Link>
+                        </li>}
+                        {!this.state.tokenState &&
+                        <li>
+                            <Link to="/Login"> Login </Link>
+                        </li>
+                        }
+                        {!this.state.tokenState && 
+                        <li>
+                            <Link to="/Signup"> SignUp </Link>
+                        </li>
+                        }
+                        {this.state.tokenState && 
+                        <li>
+                            <button onClick={() => this.logoutHandler()}>Logout</button>
+                        </li>
+                        }
+                    </ul>
+                </nav>
+            </header>
         );
     }
 }
